@@ -3,4 +3,3 @@ uvicorn==0.13.4
 gunicorn==20.1.0
 requests==2.25.1
 PyQRCode==1.2.1
-lnpay-py==0.1.0
