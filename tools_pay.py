@@ -1,5 +1,6 @@
-import lnpay_py
-from lnpay_py.wallet import LNPayWallet
+import lnpay
+#import lnpay_py
+#from lnpay_py.wallet import LNPayWallet
 import pyqrcode
 import os
 
