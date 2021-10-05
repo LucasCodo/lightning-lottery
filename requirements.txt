@@ -1,3 +1,5 @@
 fastapi==0.63.0
 uvicorn==0.13.4
 gunicorn==20.1.0
+PyQRCode==1.2.1
+lnpay-py==0.1.0
