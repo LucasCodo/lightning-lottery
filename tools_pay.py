@@ -1,4 +1,4 @@
-import lnpay_py
+'''import lnpay_py
 from lnpay_py.wallet import LNPayWallet
 import pyqrcode
 import os
@@ -27,3 +27,4 @@ def get_info():
 
 if __name__=="__main__":
     print(get_info())
+'''
