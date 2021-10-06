@@ -1,32 +1,34 @@
-import lnpay
+import Lnpay
 #import lnpay_py
 #from lnpay_py.wallet import LNPayWallet
 import pyqrcode
 import os
 
+Public = Lnpay.Public()
+Public.importkey(os.environ['public_lnpay_api_key'])
+Wallet = Lnpay.Wallet()
+keys = {'wallet_read':str(os.environ['wallet_read']),
+        'wallet_id':str(os.environ['wallet_id']),
+        'wallet_invoice':str(os.environ['wallet_invoice']),
+        'wallet_admin':str(os.environ['wallet_admin'])}
 
-def get_invoice(num_satoshis=2,memo='{02,13,22,44,55,59}, ex@gmail.com'):
+Wallet.importkeys(keys)
+
+def get_invoice(num_satoshis=2,passthru={},memo='{02,13,22,44,55,59}, ex@gmail.com',expiry=600):
     # init lnpay
-    lnpay_py.initialize(os.environ['lnpay_api_key'])
-    my_wallet = LNPayWallet(os.environ['wallet_id'])
-    invoice_params = {
-        'num_satoshis': num_satoshis,
-        'memo': memo
-    }
-    invoice = my_wallet.create_invoice(invoice_params)
+    invoice = Wallet.newinvoice(num_satoshis,passthru,memo,expiry)
     myqr = pyqrcode.create(str(invoice["payment_request"]))
-    return invoice , myqr.png_as_base64_str(scale=6)
+    return {"invoice": invoice , "QRBASE64": myqr.png_as_base64_str(scale=6)}
 
 def get_transactions():
-    # init lnpay
-    lnpay_py.initialize(os.environ['lnpay_api_key'])
-    my_wallet = LNPayWallet(os.environ['wallet_invoice'])
-    transactions = my_wallet.get_transactions()
-    return transactions
+    return Wallet.transactions()
 def get_info():
-    # init lnpay
-    lnpay_py.initialize(os.environ['lnpay_api_key'])
-    my_wallet = LNPayWallet(os.environ['wallet_read'])
-    info = my_wallet.get_info()
-    return info
+    return Wallet.balance()
 
+if __name__=="__main__":
+    print(Wallet.balance())
+    print(Wallet.transactions())
+    invoice = Wallet.newinvoice(2,memo="teste,asdfasd@asdf.com",expiry=600)
+    myqr = pyqrcode.create(str(invoice["payment_request"]))
+    print(invoice)
+    print(myqr.png_as_base64_str(scale=6))
