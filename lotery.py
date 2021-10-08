@@ -27,21 +27,23 @@ class aposta():
         return ""
     def __repr__(self):
         return self.email+', '+str(self.numeros)
-# apostas aleatorias para teste
-print("Apostando...")
-apostas=list(aposta(sorteio(),"lucas-"+str(a)) for a in range(10000))
 
-# Sorteando a combinação vencedora
-print("Gerando combinação vencedora...")
-sorteado = sorteio()
-print("Combinação vencedora: ",sorteado)
+if __name__=="__main__":
+    # apostas aleatorias para teste
+    print("Apostando...")
+    apostas=list(aposta(sorteio(),"lucas-"+str(a)) for a in range(10000))
 
-# Adicionando um controle
-#print("Adicionando aposta de controle...")
-#apostas.append(aposta(sorteado,"Controle!"))
+    # Sorteando a combinação vencedora
+    print("Gerando combinação vencedora...")
+    sorteado = sorteio()
+    print("Combinação vencedora: ",sorteado)
 
-# Verifica se dentro das apostas existe vencedores.
-print("Procurando ganhadores...")
-for a in ganhadores(sorteado,apostas):
-    print("Ganhador:",a)
+    # Adicionando um controle
+    #print("Adicionando aposta de controle...")
+    #apostas.append(aposta(sorteado,"Controle!"))
+
+    # Verifica se dentro das apostas existe vencedores.
+    print("Procurando ganhadores...")
+    for a in ganhadores(sorteado,apostas):
+        print("Ganhador:",a)
 
