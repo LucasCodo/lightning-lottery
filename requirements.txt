@@ -1,6 +1,6 @@
-fastapi==0.63.0
+fastapi==0.70.0
 gunicorn==20.1.0
-pydantic==1.8
+pydantic==1.8.2
 pypng==0.0.21
 PyQRCode==1.2.1
 requests==2.25.1
