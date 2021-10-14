@@ -7,4 +7,7 @@ requests==2.25.1
 requests-oauthlib==1.3.0
 requests-toolbelt==0.7.0
 uvicorn==0.13.4
-lnpay
+lnpay==1.0
+google-api-python-client==2.26.1
+google-auth-httplib2==0.1.0
+google-auth-oauthlib==0.4.6

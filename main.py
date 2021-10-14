@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 from tools_pay import *
 
@@ -9,9 +10,22 @@ class Bilhete(BaseModel):
     email:str
 
 # Rota Raiz
-@app.get("/")
+@app.get("/", response_class=HTMLResponse)
 def raiz():
-    return "OLA MUNDO!"
+    return """
+    <html>
+        <head>
+            <title>Lightning Lottery</title>
+        </head>
+        <body>
+            <h1>Lightning Lottery!</h1>
+            <p>
+            Esse é um serviço em fase Beta!<br>
+            Lighting Lottery é uma loteria que usa a rede lightning do Bitcoin.<br>
+            </p>
+        </body>
+    </html>"""
+
 
 
 @app.post("/apostar")
