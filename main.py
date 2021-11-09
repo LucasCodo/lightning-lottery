@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
+from typing import List
 from pydantic import BaseModel
 from tools_pay import *
 from fastapi.middleware.cors import CORSMiddleware
@@ -18,8 +19,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 class Bilhete(BaseModel):
-    numeros:str
-    email:str
+    numeros: List[int]
+    email: str
 
 # Rota Raiz
 @app.get("/", response_class=HTMLResponse)
